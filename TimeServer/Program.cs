@@ -1,10 +1,17 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 var endpoint = new IPEndPoint(
     IPAddress.Loopback,
     44444);
-TcpListener tcpListener = new TcpListener(endpoint);
+TcpListener tcpListener = new (endpoint);
 tcpListener.Start();
 
 
+var tcpClient = tcpListener.AcceptTcpClient();
+
+byte[] buffer = new byte[100];
+buffer = Encoding.ASCII.GetBytes(DateTime.Now.ToString());
+if (tcpClient != null) tcpClient.GetStream().Write(buffer);
