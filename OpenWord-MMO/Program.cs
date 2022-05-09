@@ -1,10 +1,15 @@
 ﻿
+using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
-var udpClient = new UdpClient();
-var remoteEP = new IPEndPoint(
-    IPAddress.Any, 11000);
-var data = udpClient.Receive(ref remoteEP);
-udpClient.Connect(remoteEP);
+var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 14411);
 
+var server = new UdpClient(serverEndpoint);
+
+while (true){
+    IPEndPoint clientEndPoint = default;
+    var data = server.Receive(ref clientEndPoint);
+    Console.WriteLine($"packet received from: {clientEndPoint} saying: {Encoding.ASCII.GetString(data)}");
+}
