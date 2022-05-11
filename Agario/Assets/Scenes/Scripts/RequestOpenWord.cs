@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class RequestOpenWord : MonoBehaviour{
-    public TextField textField;
+    [SerializeField] TMP_InputField inputField;
     
     public void SendWordToServer(){
         var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 14411);
@@ -16,7 +18,7 @@ public class RequestOpenWord : MonoBehaviour{
 
         var client = new UdpClient(clientEndpoint);
 
-        var message = Encoding.ASCII.GetBytes("Hello!");
+        var message = Encoding.ASCII.GetBytes(inputField.text);
 
         client.Send(message,message.Length, serverEndpoint);
     }
