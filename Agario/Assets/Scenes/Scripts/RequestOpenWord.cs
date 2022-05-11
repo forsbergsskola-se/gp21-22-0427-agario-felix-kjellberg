@@ -21,5 +21,6 @@ public class RequestOpenWord : MonoBehaviour{
         var message = Encoding.ASCII.GetBytes(inputField.text);
 
         client.Send(message,message.Length, serverEndpoint);
+        Debug.Log(Encoding.ASCII.GetString(client.Receive(ref serverEndpoint)));
     }
 }
