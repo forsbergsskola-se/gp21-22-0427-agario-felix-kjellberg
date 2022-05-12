@@ -14,4 +14,5 @@ while (true){
     if (data.Length > 30)
         server.Send(Encoding.ASCII.GetBytes("Message needs to be under 30 characters"), clientEndPoint);
     Console.WriteLine($"packet received from: {clientEndPoint} saying: {Encoding.ASCII.GetString(data)}");
+    server.Send(data, clientEndPoint);
 }

@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 
 public class RequestOpenWord : MonoBehaviour{
     [SerializeField] TMP_InputField inputField;
+    [SerializeField] TextMeshProUGUI TMP;
     
     public void SendWordToServer(){
         var serverEndpoint = new IPEndPoint(IPAddress.Loopback, 14411);
@@ -21,6 +22,6 @@ public class RequestOpenWord : MonoBehaviour{
         var message = Encoding.ASCII.GetBytes(inputField.text);
 
         client.Send(message,message.Length, serverEndpoint);
-        Debug.Log(Encoding.ASCII.GetString(client.Receive(ref serverEndpoint)));
+        TMP.text += Encoding.ASCII.GetString(client.Receive(ref serverEndpoint));
     }
 }
