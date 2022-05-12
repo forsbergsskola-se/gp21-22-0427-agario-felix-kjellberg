@@ -22,6 +22,7 @@ public class RequestOpenWord : MonoBehaviour{
         var message = Encoding.ASCII.GetBytes(inputField.text);
 
         client.Send(message,message.Length, serverEndpoint);
-        TMP.text += Encoding.ASCII.GetString(client.Receive(ref serverEndpoint));
+        var response = Encoding.ASCII.GetString(client.Receive(ref serverEndpoint));
+        TMP.text = response;
     }
 }
