@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Players, Food
+  - Gamefield
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Game Field
+    uniqueID: 1212903515
+    locked: 0
+  - name: Food
+    uniqueID: 1991581277
+    locked: 0
+  - name: Players
+    uniqueID: 3185117367
     locked: 0
