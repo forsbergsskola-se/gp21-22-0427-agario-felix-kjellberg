@@ -13,8 +13,8 @@ string text = "";
 
 while (true){
     IPEndPoint clientEndPoint = default;
-    var data = server.Receive(ref clientEndPoint);
-    var clientText = Encoding.ASCII.GetString(data);
+    var clientData = server.Receive(ref clientEndPoint);
+    var clientText = Encoding.ASCII.GetString(clientData);
     var errorMessage = Encoding.ASCII.GetBytes("ERROR! Message is either over 20 characters or contains wide space, try again");
     
     Console.WriteLine($"packet received from: {clientEndPoint} saying: {clientText}");
@@ -24,7 +24,7 @@ while (true){
     
     if (regex.IsMatch(clientText)){
         text += clientText + " ";
-        var dataText = Encoding.ASCII.GetBytes(text);
-        server.Send(dataText, clientEndPoint);
+        var serverTextData = Encoding.ASCII.GetBytes(text);
+        server.Send(serverTextData, clientEndPoint);
     }
 }
