@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
+    [SerializeField] float moveSpeed = 0.05f;
     Vector2 mousePosition;
     new Rigidbody2D rigidbody2D;
 
@@ -13,8 +14,8 @@ public class Movement : MonoBehaviour{
     }
 
     void Update(){
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Camera.main is not null) mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log(mousePosition);
-        rigidbody2D.MovePosition(mousePosition);
+        rigidbody2D.MovePosition(Vector2.Lerp(this.transform.position,mousePosition, moveSpeed));
     }
 }
