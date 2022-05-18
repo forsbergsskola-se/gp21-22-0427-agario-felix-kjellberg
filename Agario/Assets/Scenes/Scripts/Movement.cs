@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
-    [SerializeField] float moveSpeed = 0.05f;
+    [SerializeField] float moveSpeed = 10f;
     Vector2 mousePosition;
     new Rigidbody2D rigidbody2D;
 
@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour{
         if (Camera.main is not null) mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log(mousePosition);
         //TODO: Make movement speed so the player always moves at the same speed.
-        rigidbody2D.MovePosition(Vector2.Lerp(this.transform.position,mousePosition, moveSpeed));
+        var mouseDirection = mousePosition - (Vector2)transform.position;
+        rigidbody2D.MovePosition((Vector2)this.transform.position + mouseDirection.normalized * Time.deltaTime * moveSpeed);
     }
 }
