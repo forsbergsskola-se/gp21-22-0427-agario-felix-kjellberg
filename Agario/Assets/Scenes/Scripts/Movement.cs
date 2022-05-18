@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour{
     void Update(){
         if (Camera.main is not null) mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log(mousePosition);
-        //TODO: Make movement speed so the player always moves at the same speed.
+        //TODO: Movement seems somewhat staggering
         var mouseDirection = mousePosition - (Vector2)transform.position;
         rigidbody2D.MovePosition((Vector2)this.transform.position + mouseDirection.normalized * Time.deltaTime * moveSpeed);
     }
