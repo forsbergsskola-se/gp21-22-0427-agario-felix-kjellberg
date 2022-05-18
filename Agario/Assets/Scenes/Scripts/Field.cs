@@ -28,5 +28,10 @@ public class Field : MonoBehaviour{
         var randomSpawnPoint = random.Next(-halfWorldSize, halfWorldSize);
         return new Vector2(randomSpawnPoint, randomSpawnPoint);
     }
-    
+
+    public Vector2[] GetWorldBoundaries(){
+        Vector2 bottomLeft = new Vector2(-HalfWorldSize(), -HalfWorldSize());
+        Vector2 topRight = new Vector2(HalfWorldSize(), HalfWorldSize());
+        return new[]{bottomLeft, topRight};
+    }
 }
