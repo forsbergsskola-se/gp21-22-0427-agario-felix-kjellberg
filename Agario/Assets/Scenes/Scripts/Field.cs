@@ -33,4 +33,12 @@ public class Field : MonoBehaviour{
         Vector2 topRight = new Vector2(HalfWorldSize(), HalfWorldSize());
         return new[]{bottomLeft, topRight};
     }
+
+    public Vector2 GetBottomLeft(){
+        return new Vector2(-HalfWorldSize(), -HalfWorldSize());
+    }
+
+    public Vector2 GetTopRight(){
+        return new Vector2(HalfWorldSize(), HalfWorldSize());
+    }
 }

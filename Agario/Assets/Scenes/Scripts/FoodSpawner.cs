@@ -11,11 +11,15 @@ public class FoodSpawner : MonoBehaviour{
 
 
     IEnumerator Start(){
-        foreach (var food in foodPool){
-            yield return new WaitForSeconds(spawnTimer);
-            Instantiate(food);
-            food.SetActive(true);
-            food.transform.position = gameField.GetRandomSpawnPoint();
+        while (true){
+            foreach (var food in foodPool){
+                yield return new WaitForSeconds(spawnTimer);
+                Instantiate(food);
+                if (!food.activeSelf){
+                    food.SetActive(true);
+                }
+                food.transform.position = gameField.GetRandomSpawnPoint();
+            }
         }
     }
 
