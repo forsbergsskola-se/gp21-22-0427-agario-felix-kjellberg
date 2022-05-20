@@ -20,13 +20,12 @@ public class Field : MonoBehaviour{
     }
 
     int HalfWorldSize(){
-        return (int) worldSize.x / 2;
+        return Mathf.RoundToInt(worldSize.x / 2);
     }
 
     public Vector2 GetRandomSpawnPoint(){
         var halfWorldSize = HalfWorldSize();
-        var randomSpawnPoint = random.Next(-halfWorldSize, halfWorldSize);
-        return new Vector2(randomSpawnPoint, randomSpawnPoint);
+        return new Vector2(random.Next(-halfWorldSize, halfWorldSize), random.Next(-halfWorldSize, halfWorldSize));
     }
 
     public Vector2[] GetWorldBoundaries(){
